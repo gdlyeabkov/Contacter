@@ -1,0 +1,327 @@
+﻿<Window x:Class="SoftPhone.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SoftPhone"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Мессенджер" Height="450" Width="800" WindowState="Maximized">
+    <DockPanel>
+        <DockPanel Height="35" Background="Orange" DockPanel.Dock="Top">
+            <materialDesign:PackIcon Width="25" Height="25" DockPanel.Dock="Left" Margin="5" Kind="HamburgerMenu" Foreground="Green" />
+            <TextBox DockPanel.Dock="Left" Text="Поиск..." VerticalContentAlignment="Center" Margin="5" />
+        </DockPanel>
+        <ScrollViewer DockPanel.Dock="Left" VerticalScrollBarVisibility="Visible">
+            <StackPanel x:Name="chats" Width="300" Background="Red">
+                <StackPanel Background="LightBlue" Orientation="Horizontal" Height="65" MouseEnter="HoverChatHandler" MouseLeave="HoutChatHandler" MouseUp="SelectChatHandler">
+                    <Image Width="50" Height="50">
+                        <Image.Source>
+                            <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/remixicon-system/24/checkbox-blank-circle-line-256.png" />
+                        </Image.Source>
+                    </Image>
+                    <StackPanel VerticalAlignment="Center" Margin="25, 0, 25, 0">
+                        <TextBlock Text="Имя друга A" Margin="0, 5" />
+                        <TextBlock Text="Последнее сообщение" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Margin="5" Kind="CheckAll" Foreground="Green" />
+                        <TextBlock Text="17:24" Margin="5" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Background="White" Orientation="Horizontal" Height="65" MouseEnter="HoverChatHandler" MouseLeave="HoutChatHandler" MouseUp="SelectChatHandler">
+                    <Image Width="50" Height="50">
+                        <Image.Source>
+                            <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/remixicon-system/24/checkbox-blank-circle-line-256.png" />
+                        </Image.Source>
+                    </Image>
+                    <StackPanel VerticalAlignment="Center" Margin="25, 0, 25, 0">
+                        <TextBlock Text="Имя друга B" Margin="0, 5" />
+                        <TextBlock Text="Последнее сообщение" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Margin="5" Kind="CheckAll" Foreground="Green" />
+                        <TextBlock Text="17:24" Margin="5" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Background="White" Orientation="Horizontal" Height="65" MouseEnter="HoverChatHandler" MouseLeave="HoutChatHandler" MouseUp="SelectChatHandler">
+                    <Image Width="50" Height="50">
+                        <Image.Source>
+                            <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/remixicon-system/24/checkbox-blank-circle-line-256.png" />
+                        </Image.Source>
+                    </Image>
+                    <StackPanel VerticalAlignment="Center" Margin="25, 0, 25, 0">
+                        <TextBlock Text="Имя друга C" Margin="0, 5" />
+                        <TextBlock Text="Последнее сообщение" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Margin="5" Kind="CheckAll" Foreground="Green" />
+                        <TextBlock Text="17:24" Margin="5" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Background="White" Orientation="Horizontal" Height="65" MouseEnter="HoverChatHandler" MouseLeave="HoutChatHandler" MouseUp="SelectChatHandler">
+                    <Image Width="50" Height="50">
+                        <Image.Source>
+                            <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/remixicon-system/24/checkbox-blank-circle-line-256.png" />
+                        </Image.Source>
+                    </Image>
+                    <StackPanel VerticalAlignment="Center" Margin="25, 0, 25, 0">
+                        <TextBlock Text="Имя друга D" Margin="0, 5" />
+                        <TextBlock Text="Последнее сообщение" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Margin="5" Kind="CheckAll" Foreground="Green" />
+                        <TextBlock Text="17:24" Margin="5" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Background="White" Orientation="Horizontal" Height="65" MouseEnter="HoverChatHandler" MouseLeave="HoutChatHandler" MouseUp="SelectChatHandler">
+                    <Image Width="50" Height="50">
+                        <Image.Source>
+                            <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/remixicon-system/24/checkbox-blank-circle-line-256.png" />
+                        </Image.Source>
+                    </Image>
+                    <StackPanel VerticalAlignment="Center" Margin="25, 0, 25, 0">
+                        <TextBlock Text="Имя друга E" Margin="0, 5" />
+                        <TextBlock Text="Последнее сообщение" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Margin="5" Kind="CheckAll" Foreground="Green" />
+                        <TextBlock Text="17:24" Margin="5" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Background="White" Orientation="Horizontal" Height="65" MouseEnter="HoverChatHandler" MouseLeave="HoutChatHandler" MouseUp="SelectChatHandler">
+                    <Image Width="50" Height="50">
+                        <Image.Source>
+                            <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/remixicon-system/24/checkbox-blank-circle-line-256.png" />
+                        </Image.Source>
+                    </Image>
+                    <StackPanel VerticalAlignment="Center" Margin="25, 0, 25, 0">
+                        <TextBlock Text="Имя друга E" Margin="0, 5" />
+                        <TextBlock Text="Последнее сообщение" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Margin="5" Kind="CheckAll" Foreground="Green" />
+                        <TextBlock Text="17:24" Margin="5" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Background="White" Orientation="Horizontal" Height="65" MouseEnter="HoverChatHandler" MouseLeave="HoutChatHandler" MouseUp="SelectChatHandler">
+                    <Image Width="50" Height="50">
+                        <Image.Source>
+                            <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/remixicon-system/24/checkbox-blank-circle-line-256.png" />
+                        </Image.Source>
+                    </Image>
+                    <StackPanel VerticalAlignment="Center" Margin="25, 0, 25, 0">
+                        <TextBlock Text="Имя друга E" Margin="0, 5" />
+                        <TextBlock Text="Последнее сообщение" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Margin="5" Kind="CheckAll" Foreground="Green" />
+                        <TextBlock Text="17:24" Margin="5" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Background="White" Orientation="Horizontal" Height="65" MouseEnter="HoverChatHandler" MouseLeave="HoutChatHandler" MouseUp="SelectChatHandler">
+                    <Image Width="50" Height="50">
+                        <Image.Source>
+                            <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/remixicon-system/24/checkbox-blank-circle-line-256.png" />
+                        </Image.Source>
+                    </Image>
+                    <StackPanel VerticalAlignment="Center" Margin="25, 0, 25, 0">
+                        <TextBlock Text="Имя друга E" Margin="0, 5" />
+                        <TextBlock Text="Последнее сообщение" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Margin="5" Kind="CheckAll" Foreground="Green" />
+                        <TextBlock Text="17:24" Margin="5" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Background="White" Orientation="Horizontal" Height="65" MouseEnter="HoverChatHandler" MouseLeave="HoutChatHandler" MouseUp="SelectChatHandler">
+                    <Image Width="50" Height="50">
+                        <Image.Source>
+                            <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/remixicon-system/24/checkbox-blank-circle-line-256.png" />
+                        </Image.Source>
+                    </Image>
+                    <StackPanel VerticalAlignment="Center" Margin="25, 0, 25, 0">
+                        <TextBlock Text="Имя друга E" Margin="0, 5" />
+                        <TextBlock Text="Последнее сообщение" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Margin="5" Kind="CheckAll" Foreground="Green" />
+                        <TextBlock Text="17:24" Margin="5" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Background="White" Orientation="Horizontal" Height="65" MouseEnter="HoverChatHandler" MouseLeave="HoutChatHandler" MouseUp="SelectChatHandler">
+                    <Image Width="50" Height="50">
+                        <Image.Source>
+                            <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/remixicon-system/24/checkbox-blank-circle-line-256.png" />
+                        </Image.Source>
+                    </Image>
+                    <StackPanel VerticalAlignment="Center" Margin="25, 0, 25, 0">
+                        <TextBlock Text="Имя друга E" Margin="0, 5" />
+                        <TextBlock Text="Последнее сообщение" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Margin="5" Kind="CheckAll" Foreground="Green" />
+                        <TextBlock Text="17:24" Margin="5" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Background="White" Orientation="Horizontal" Height="65" MouseEnter="HoverChatHandler" MouseLeave="HoutChatHandler" MouseUp="SelectChatHandler">
+                    <Image Width="50" Height="50">
+                        <Image.Source>
+                            <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/remixicon-system/24/checkbox-blank-circle-line-256.png" />
+                        </Image.Source>
+                    </Image>
+                    <StackPanel VerticalAlignment="Center" Margin="25, 0, 25, 0">
+                        <TextBlock Text="Имя друга E" Margin="0, 5" />
+                        <TextBlock Text="Последнее сообщение" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Margin="5" Kind="CheckAll" Foreground="Green" />
+                        <TextBlock Text="17:24" Margin="5" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Background="White" Orientation="Horizontal" Height="65" MouseEnter="HoverChatHandler" MouseLeave="HoutChatHandler" MouseUp="SelectChatHandler">
+                    <Image Width="50" Height="50">
+                        <Image.Source>
+                            <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/remixicon-system/24/checkbox-blank-circle-line-256.png" />
+                        </Image.Source>
+                    </Image>
+                    <StackPanel VerticalAlignment="Center" Margin="25, 0, 25, 0">
+                        <TextBlock Text="Имя друга E" Margin="0, 5" />
+                        <TextBlock Text="Последнее сообщение" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Margin="5" Kind="CheckAll" Foreground="Green" />
+                        <TextBlock Text="17:24" Margin="5" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Background="White" Orientation="Horizontal" Height="65" MouseEnter="HoverChatHandler" MouseLeave="HoutChatHandler" MouseUp="SelectChatHandler">
+                    <Image Width="50" Height="50">
+                        <Image.Source>
+                            <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/remixicon-system/24/checkbox-blank-circle-line-256.png" />
+                        </Image.Source>
+                    </Image>
+                    <StackPanel VerticalAlignment="Center" Margin="25, 0, 25, 0">
+                        <TextBlock Text="Имя друга E" Margin="0, 5" />
+                        <TextBlock Text="Последнее сообщение" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Margin="5" Kind="CheckAll" Foreground="Green" />
+                        <TextBlock Text="17:24" Margin="5" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Background="White" Orientation="Horizontal" Height="65" MouseEnter="HoverChatHandler" MouseLeave="HoutChatHandler" MouseUp="SelectChatHandler">
+                    <Image Width="50" Height="50">
+                        <Image.Source>
+                            <BitmapImage UriSource="https://cdn3.iconfinder.com/data/icons/remixicon-system/24/checkbox-blank-circle-line-256.png" />
+                        </Image.Source>
+                    </Image>
+                    <StackPanel VerticalAlignment="Center" Margin="25, 0, 25, 0">
+                        <TextBlock Text="Имя друга E" Margin="0, 5" />
+                        <TextBlock Text="Последнее сообщение" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Margin="5" Kind="CheckAll" Foreground="Green" />
+                        <TextBlock Text="17:24" Margin="5" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+        <DockPanel DockPanel.Dock="Right" Background="Green">
+            <DockPanel DockPanel.Dock="Top" Background="Cyan">
+                <StackPanel DockPanel.Dock="Right" Margin="7" Orientation="Horizontal">
+                    <materialDesign:PackIcon Margin="5" Kind="Search" />
+                    <materialDesign:PackIcon Margin="5" Kind="Call" />
+                    <materialDesign:PackIcon Margin="5" Kind="SquareOutline" />
+                    <materialDesign:PackIcon Margin="5" Kind="MoreVert">
+                        <materialDesign:PackIcon.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Посмотреть профиль" />
+                            </ContextMenu>
+                        </materialDesign:PackIcon.ContextMenu>
+                    </materialDesign:PackIcon>
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Right" Margin="7">
+                    <TextBlock x:Name="friendNameChat"  Text="Имя друга" FontWeight="ExtraBlack" />
+                    <TextBlock x:Name="friendWasChat" Text="Был в сети час назад" />
+                </StackPanel>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Bottom" Height="25" Background="Pink">
+                <Button Click="UploadFileHandler" DockPanel.Dock="Left" Width="35">
+                    <Button.Content>
+                        <materialDesign:PackIcon Kind="AttachFile" />
+                    </Button.Content>
+                </Button>
+                <Button Click="SendMessageHandler" DockPanel.Dock="Right" HorizontalContentAlignment="Center" Width="35">
+                    <Button.Content>
+                        <materialDesign:PackIcon Kind="Send" />
+                    </Button.Content>
+                </Button>
+                <TextBox x:Name="preparedMessage" Text="" DockPanel.Dock="Left" />
+            </DockPanel>
+            <ScrollViewer x:Name="chat" VerticalScrollBarVisibility="Visible" DockPanel.Dock="Top">
+                <StackPanel x:Name="messages">
+                    <StackPanel HorizontalAlignment="Right" Margin="10" Background="White" Width="200" Height="50">
+                        <TextBlock Text="A" Margin="5" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" Margin="10" Background="White" Width="200" Height="50">
+                        <TextBlock Text="A" Margin="5" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Margin="10" Background="White" Width="200" Height="50">
+                        <TextBlock Text="A" Margin="5" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" Margin="10" Background="White" Width="200" Height="50">
+                        <TextBlock Text="A" Margin="5" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Margin="10" Background="White" Width="200" Height="50">
+                        <TextBlock Text="A" Margin="5" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" Margin="10" Background="White" Width="200" Height="50">
+                        <TextBlock Text="A" Margin="5" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Margin="10" Background="White" Width="200" Height="50">
+                        <TextBlock Text="A" Margin="5" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" Margin="10" Background="White" Width="200" Height="50">
+                        <TextBlock Text="A" Margin="5" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Margin="10" Background="White" Width="200" Height="50">
+                        <TextBlock Text="A" Margin="5" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" Margin="10" Background="White" Width="200" Height="50">
+                        <TextBlock Text="A" Margin="5" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Margin="10" Background="White" Width="200" Height="50">
+                        <TextBlock Text="A" Margin="5" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" Margin="10" Background="White" Width="200" Height="50">
+                        <TextBlock Text="A" Margin="5" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Margin="10" Background="White" Width="200" Height="50">
+                        <TextBlock Text="A" Margin="5" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" Margin="10" Background="White" Width="200" Height="50">
+                        <TextBlock Text="A" Margin="5" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Margin="10" Background="White" Width="200" Height="50">
+                        <TextBlock Text="A" Margin="5" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" Margin="10" Background="White" Width="200" Height="50">
+                        <TextBlock Text="A" Margin="5" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Margin="10" Background="White" Width="200" Height="50">
+                        <TextBlock Text="A" Margin="5" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" Margin="10" Background="White" Width="200" Height="50">
+                        <TextBlock Text="A" Margin="5" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Margin="10" Background="White" Width="200" Height="50">
+                        <TextBlock Text="A" Margin="5" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" Margin="10" Background="White" Width="200" Height="50">
+                        <TextBlock Text="A" Margin="5" />
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </DockPanel>
+    </DockPanel>
+</Window>

@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "e75bf897-854f-40f3-a4a0-0ee33a294f2f": {
+      "ProjectGuid": "e75bf897-854f-40f3-a4a0-0ee33a294f2f",
+      "DisplayName": "SoftPhone",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Прочие файлы",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 1
+}
