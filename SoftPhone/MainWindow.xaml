@@ -10,7 +10,7 @@
     <DockPanel>
         <DockPanel Height="35" Background="Orange" DockPanel.Dock="Top">
             <materialDesign:PackIcon Width="25" Height="25" DockPanel.Dock="Left" Margin="5" Kind="HamburgerMenu" Foreground="Green" />
-            <TextBox DockPanel.Dock="Left" Text="Поиск..." VerticalContentAlignment="Center" Margin="5" />
+            <TextBox PreviewTextInput="ChatsFilterHandler" DockPanel.Dock="Left" Text="Поиск..." VerticalContentAlignment="Center" Margin="5" />
         </DockPanel>
         <ScrollViewer DockPanel.Dock="Left" VerticalScrollBarVisibility="Visible">
             <StackPanel x:Name="chats" Width="300" Background="Red">
@@ -236,6 +236,15 @@
                         <materialDesign:PackIcon.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="Посмотреть профиль" />
+                                <MenuItem Header="Отключить уведомления" />
+                                <MenuItem Header="Поделиться контаком" />
+                                <MenuItem Header="Редактировать контакт" />
+                                <MenuItem Header="Удалить контакт" />
+                                <MenuItem Header="Изменить цвета" />
+                                <MenuItem Header="Экспортировать историю чата" />
+                                <MenuItem Header="Удалить чат" />
+                                <MenuItem Header="Очистить историю" />
+                                <MenuItem Header="Блокировать пользователя" />
                             </ContextMenu>
                         </materialDesign:PackIcon.ContextMenu>
                     </materialDesign:PackIcon>
@@ -261,7 +270,19 @@
             <ScrollViewer x:Name="chat" VerticalScrollBarVisibility="Visible" DockPanel.Dock="Top">
                 <StackPanel x:Name="messages">
                     <StackPanel HorizontalAlignment="Right" Margin="10" Background="White" Width="200" Height="50">
-                        <TextBlock Text="A" Margin="5" />
+                        <TextBlock Text="A" Margin="5">
+                            <TextBlock.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Ответить" />
+                                    <MenuItem Header="Редактировать" />
+                                    <MenuItem Header="Прикрепить" />
+                                    <MenuItem Header="Сохранить как" />
+                                    <MenuItem Header="Цитировать" />
+                                    <MenuItem Header="Удалить" />
+                                    <MenuItem Header="Выбрать" />
+                                </ContextMenu>
+                            </TextBlock.ContextMenu>
+                        </TextBlock>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Left" Margin="10" Background="White" Width="200" Height="50">
                         <TextBlock Text="A" Margin="5" />
