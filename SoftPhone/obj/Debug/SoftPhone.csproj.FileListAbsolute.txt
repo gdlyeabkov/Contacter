@@ -20,3 +20,5 @@ C:\wpf_projects\SoftPhone\SoftPhone\bin\Debug\MaterialDesignColors.pdb
 C:\wpf_projects\SoftPhone\SoftPhone\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\wpf_projects\SoftPhone\SoftPhone\bin\Debug\MaterialDesignThemes.Wpf.xml
 C:\wpf_projects\SoftPhone\SoftPhone\obj\Debug\SoftPhone.csproj.CopyComplete
+C:\wpf_projects\SoftPhone\SoftPhone\obj\Debug\Dialogs\ContactCreatorDialog.g.cs
+C:\wpf_projects\SoftPhone\SoftPhone\obj\Debug\Dialogs\ContactCreatorDialog.baml

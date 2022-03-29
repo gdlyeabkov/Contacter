@@ -9,11 +9,67 @@
         Title="Мессенджер" Height="450" Width="800" WindowState="Maximized">
     <DockPanel>
         <DockPanel Height="35" Background="Orange" DockPanel.Dock="Top">
-            <materialDesign:PackIcon Width="25" Height="25" DockPanel.Dock="Left" Margin="5" Kind="HamburgerMenu" Foreground="Green" />
-            <TextBox PreviewTextInput="ChatsFilterHandler" DockPanel.Dock="Left" Text="Поиск..." VerticalContentAlignment="Center" Margin="5" />
+            <materialDesign:PackIcon
+                Width="25"
+                Height="25"
+                DockPanel.Dock="Left"
+                Margin="5"
+                Kind="HamburgerMenu"
+                Foreground="Green"
+                MouseUp="ToggleBurgerMenuHandler"
+            />
+
+            <StackPanel
+                Height="20"
+                Background="White"
+                Margin="5"
+            >
+                <TextBox
+                    x:Name="searchBox"
+                    Text=""
+                    TextChanged="ChatsFilterHandler"
+                    DockPanel.Dock="Left"
+                    VerticalContentAlignment="Center"
+                    BorderThickness="0"
+                >
+                    <TextBox.Resources>
+                        <VisualBrush
+                            x:Key="hinttext"
+                            AlignmentX="Left"
+                            Stretch="None"
+                            TileMode="None"
+                        >
+                            <VisualBrush.Visual>
+                                <TextBlock
+                                    Text="Поиск..."
+                                    Foreground="#959595"
+                                    Background="White"
+                                />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </TextBox.Resources>
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="Width" Value="Auto" />
+                            <Setter Property="Width" Value="Auto" />
+                            <Style.Triggers>
+                                <Trigger Property="Text" Value="">
+                                    <Setter Property="Background" Value="{StaticResource hinttext}" />
+                                </Trigger>
+                                <Trigger Property="Text" Value="{x:Null}">
+                                    <Setter Property="Background" Value="{StaticResource hinttext}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+            </StackPanel>
         </DockPanel>
         <ScrollViewer DockPanel.Dock="Left" VerticalScrollBarVisibility="Visible">
             <StackPanel x:Name="chats" Width="300" Background="Red">
+                <!--
                 <StackPanel Background="LightBlue" Orientation="Horizontal" Height="65" MouseEnter="HoverChatHandler" MouseLeave="HoutChatHandler" MouseUp="SelectChatHandler">
                     <Image Width="50" Height="50">
                         <Image.Source>
@@ -224,12 +280,22 @@
                         <TextBlock Text="17:24" Margin="5" />
                     </StackPanel>
                 </StackPanel>
+                -->
             </StackPanel>
         </ScrollViewer>
-        <DockPanel DockPanel.Dock="Right" Background="Green">
+        <DockPanel
+            x:Name="chatBlock"
+            DockPanel.Dock="Right"
+            Background="Green"
+            Visibility="Collapsed"           
+        >
             <DockPanel DockPanel.Dock="Top" Background="Cyan">
                 <StackPanel DockPanel.Dock="Right" Margin="7" Orientation="Horizontal">
-                    <materialDesign:PackIcon Margin="5" Kind="Search" />
+                    <materialDesign:PackIcon
+                        Margin="5"
+                        Kind="Search"
+                        MouseUp="ActivateSearchBoxHandler"
+                     />
                     <materialDesign:PackIcon Margin="5" Kind="Call" />
                     <materialDesign:PackIcon Margin="5" Kind="SquareOutline" />
                     <materialDesign:PackIcon Margin="5" Kind="MoreVert">
@@ -254,7 +320,11 @@
                     <TextBlock x:Name="friendWasChat" Text="Был в сети час назад" />
                 </StackPanel>
             </DockPanel>
-            <DockPanel DockPanel.Dock="Bottom" Height="25" Background="Pink">
+            <DockPanel
+                DockPanel.Dock="Bottom"
+                Height="25"
+                Background="Pink"
+            >
                 <Button Click="UploadFileHandler" DockPanel.Dock="Left" Width="35">
                     <Button.Content>
                         <materialDesign:PackIcon Kind="AttachFile" />
@@ -269,6 +339,7 @@
             </DockPanel>
             <ScrollViewer x:Name="chat" VerticalScrollBarVisibility="Visible" DockPanel.Dock="Top">
                 <StackPanel x:Name="messages">
+                    <!--
                     <StackPanel HorizontalAlignment="Right" Margin="10" Background="White" Width="200" Height="50">
                         <TextBlock Text="A" Margin="5">
                             <TextBlock.ContextMenu>
@@ -341,6 +412,7 @@
                     <StackPanel HorizontalAlignment="Left" Margin="10" Background="White" Width="200" Height="50">
                         <TextBlock Text="A" Margin="5" />
                     </StackPanel>
+                    -->
                 </StackPanel>
             </ScrollViewer>
         </DockPanel>
