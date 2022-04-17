@@ -22,6 +22,11 @@ using System.Speech.Synthesis;
 using System.ComponentModel;
 using System.Web.Script.Serialization;
 using MaterialDesignThemes.Wpf;
+using SocketIOClient;
+using System.Diagnostics;
+using System.Text.Json.Serialization;
+using SocketIOClient.JsonSerializer;
+using System.Text.Json;
 
 namespace SoftPhone
 {
@@ -36,6 +41,8 @@ namespace SoftPhone
         public string currentChatId = "-1";
         public bool isAppInit = false;
         public string myContactId = "613f01ca19964e0016370b83";
+        public SocketIO client = null;
+        public SystemTextJsonSerializer jsonSerializer = null;
 
         public MainWindow()
         {
@@ -132,22 +139,10 @@ namespace SoftPhone
             }
         }
 
-        public void SendMessage(string newMessage)
+        async public void SendMessage(string newMessage)
         {
-            StackPanel newChatMessage = new StackPanel();
-            newChatMessage.Background = System.Windows.Media.Brushes.White;
-            newChatMessage.Width = 200;
-            newChatMessage.Height = 50;
-            newChatMessage.Margin = new Thickness(10);
-            newChatMessage.HorizontalAlignment = HorizontalAlignment.Left;
-            TextBlock newChatMessageLabel = new TextBlock();
-            newChatMessageLabel.Text = newMessage;
-            newChatMessageLabel.Margin = new Thickness(5);
-            newChatMessage.Children.Add(newChatMessageLabel);
-            messages.Children.Add(newChatMessage);
-            preparedMessage.Text = "";
-            chat.ScrollToEnd();
             
+            AddMessage(newMessage);
 
             String uriPath = "https://messengerserv.herokuapp.com/contacts/messages/add/?contactid=" + myContactId + "&othercontactid=" + currentChatId + "&message=" + newMessage;
             var webRequest = HttpWebRequest.Create(uriPath);
@@ -161,6 +156,13 @@ namespace SoftPhone
                         JavaScriptSerializer js = new JavaScriptSerializer();
                         var objText = reader.ReadToEnd();
                         ContactsListResponse myobj = (ContactsListResponse)js.Deserialize(objText, typeof(ContactsListResponse));
+                        await client.EmitAsync("SendMessage", new ContactMessage
+                        {
+                            id = myContactId,
+                            chatId = currentChatId,
+                            msg = newMessage
+                        });
+                        Debugger.Log(0, "debug", "client socket receive message");
                     }
                 }
             }
@@ -234,88 +236,64 @@ namespace SoftPhone
             
         }*/
 
-        public void ListenSockets()
+        public void AddMessage (string newMessage)
         {
-            /*string ip = "127.0.0.1";
-            int port = 80;
-            var server = new TcpListener(IPAddress.Parse(ip), port);
-            server.Start();
-            TcpClient client = server.AcceptTcpClient();
-            NetworkStream stream = client.GetStream();*/
-
-            /*Socket socket = server.AcceptSocket();
-            socket.Send(Encoding.Unicode.GetBytes("mock data"));*/
-
-            /*while (true)
+            this.Dispatcher.Invoke(() =>
             {
-                while (!stream.DataAvailable) ;
-                while (client.Available < 3) ; // match against "get"
+                StackPanel newChatMessage = new StackPanel();
+                newChatMessage.Background = System.Windows.Media.Brushes.White;
+                newChatMessage.Width = 200;
+                newChatMessage.Height = 50;
+                newChatMessage.Margin = new Thickness(10);
+                newChatMessage.HorizontalAlignment = HorizontalAlignment.Left;
+                TextBlock newChatMessageLabel = new TextBlock();
+                newChatMessageLabel.Text = newMessage;
+                newChatMessageLabel.Margin = new Thickness(5);
+                newChatMessage.Children.Add(newChatMessageLabel);
+                messages.Children.Add(newChatMessage);
+                preparedMessage.Text = "";
+                chat.ScrollToEnd();
+            });
+        }
 
-                byte[] bytes = new byte[client.Available];
-                stream.Read(bytes, 0, client.Available);
-                string s = Encoding.UTF8.GetString(bytes);
-
-                if (Regex.IsMatch(s, "^GET", RegexOptions.IgnoreCase))
+        async public void ListenSockets ()
+        {
+            try
+            {
+                client = new SocketIO("http://localhost:4000/");
+                client.OnConnected += async (sender, e) =>
                 {
-                    // 1. Obtain the value of the "Sec-WebSocket-Key" request header without any leading or trailing whitespace
-                    // 2. Concatenate it with "258EAFA5-E914-47DA-95CA-C5AB0DC85B11" (a special GUID specified by RFC 6455)
-                    // 3. Compute SHA-1 and Base64 hash of the new value
-                    // 4. Write the hash back as the value of "Sec-WebSocket-Accept" response header in an HTTP response
-                    string swk = Regex.Match(s, "Sec-WebSocket-Key: (.*)").Groups[1].Value.Trim();
-                    string swka = swk + "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
-                    byte[] swkaSha1 = System.Security.Cryptography.SHA1.Create().ComputeHash(Encoding.UTF8.GetBytes(swka));
-                    string swkaSha1Base64 = Convert.ToBase64String(swkaSha1);
-
-                    // HTTP/1.1 defines the sequence CR LF as the end-of-line marker
-                    byte[] response = Encoding.UTF8.GetBytes(
-                        "HTTP/1.1 101 Switching Protocols\r\n" +
-                        "Connection: Upgrade\r\n" +
-                        "Upgrade: websocket\r\n" +
-                        "Sec-WebSocket-Accept: " + swkaSha1Base64 + "\r\n\r\n");
-
-                    stream.Write(response, 0, response.Length);
-                }
-                else
+                    Debugger.Log(0, "debug", "client socket conntected");
+                };
+                client.On("ReceiveMessage", async response => {
+                    ContactMessage contactMessage = response.GetValue<ContactMessage>();
+                    string id = contactMessage.id;
+                    string chatId = contactMessage.chatId;
+                    string message = contactMessage.msg;
+                    Debugger.Log(0, "debug", "client socket receive message: ");
+                    Debugger.Log(0, "debug", Environment.NewLine + "id: " + id + Environment.NewLine);
+                    Debugger.Log(0, "debug", Environment.NewLine + "chatId: " + chatId + Environment.NewLine);
+                    Debugger.Log(0, "debug", Environment.NewLine + "message: " + message + Environment.NewLine);
+                    // jsonSerializer.Deserialize
+                    if (id != myContactId)
+                    {
+                        if (chatId == currentChatId)
+                        {
+                            AddMessage(message);
+                        }
+                    }
+                });
+                jsonSerializer = client.JsonSerializer as SystemTextJsonSerializer;
+                jsonSerializer.OptionsProvider = () => new JsonSerializerOptions
                 {
-                    bool fin = (bytes[0] & 0b10000000) != 0,
-                        mask = (bytes[1] & 0b10000000) != 0; // must be true, "All messages from the client to the server have this bit set"
+                    PropertyNameCaseInsensitive = true
+                };
+                await client.ConnectAsync();
+            }
+            catch (System.Net.WebSockets.WebSocketException)
+            {
 
-                    int opcode = bytes[0] & 0b00001111, // expecting 1 - text message
-                        msglen = bytes[1] - 128, // & 0111 1111
-                        offset = 2;
-
-                    if (msglen == 126)
-                    {
-                        // was ToUInt16(bytes, offset) but the result is incorrect
-                        msglen = BitConverter.ToUInt16(new byte[] { bytes[3], bytes[2] }, 0);
-                        offset = 4;
-                    }
-                    else if (msglen == 127)
-                    {
-                        Console.WriteLine("TODO: msglen == 127, needs qword to store msglen");
-                        // i don't really know the byte order, please edit this
-                        // msglen = BitConverter.ToUInt64(new byte[] { bytes[5], bytes[4], bytes[3], bytes[2], bytes[9], bytes[8], bytes[7], bytes[6] }, 0);
-                        // offset = 10;
-                    }
-
-                    if (msglen == 0)
-                        Console.WriteLine("msglen == 0");
-                    else if (mask)
-                    {
-                        byte[] decoded = new byte[msglen];
-                        byte[] masks = new byte[4] { bytes[offset], bytes[offset + 1], bytes[offset + 2], bytes[offset + 3] };
-                        offset += 4;
-
-                        for (int i = 0; i < msglen; ++i)
-                            decoded[i] = (byte)(bytes[offset + i] ^ masks[i % 4]);
-
-                        string text = Encoding.UTF8.GetString(decoded);
-                        debugger.Speak(text);
-                    }
-                    else
-                        Console.WriteLine("mask bit not set");
-                }
-            }*/
+            }
         }
 
         public void GetChats(string search)
@@ -567,6 +545,19 @@ namespace SoftPhone
         public string id;
         public string otherMessageId;
         public string message;
+    }
+
+    public class ContactMessage
+    {
+        [JsonPropertyName("id")]
+        public string id { get; set; }
+
+        [JsonPropertyName("chatId")]
+        public string chatId { get; set; }
+
+        [JsonPropertyName("msg")]
+        public string msg { get; set; }
+
     }
 
 }
