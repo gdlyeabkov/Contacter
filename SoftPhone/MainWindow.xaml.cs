@@ -275,9 +275,9 @@ namespace SoftPhone
                     Debugger.Log(0, "debug", Environment.NewLine + "chatId: " + chatId + Environment.NewLine);
                     Debugger.Log(0, "debug", Environment.NewLine + "message: " + message + Environment.NewLine);
                     // jsonSerializer.Deserialize
-                    if (id != myContactId)
+                    if (id == currentChatId)
                     {
-                        if (chatId == currentChatId)
+                        if (chatId == myContactId)
                         {
                             AddMessage(message);
                         }
