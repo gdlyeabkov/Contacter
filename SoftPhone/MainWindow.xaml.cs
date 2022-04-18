@@ -260,7 +260,8 @@ namespace SoftPhone
         {
             try
             {
-                client = new SocketIO("http://localhost:4000/");
+                // client = new SocketIO("http://localhost:4000/");
+                client = new SocketIO("https://messengerservsockets.herokuapp.com/");
                 client.OnConnected += async (sender, e) =>
                 {
                     Debugger.Log(0, "debug", "client socket conntected");
@@ -274,7 +275,6 @@ namespace SoftPhone
                     Debugger.Log(0, "debug", Environment.NewLine + "id: " + id + Environment.NewLine);
                     Debugger.Log(0, "debug", Environment.NewLine + "chatId: " + chatId + Environment.NewLine);
                     Debugger.Log(0, "debug", Environment.NewLine + "message: " + message + Environment.NewLine);
-                    // jsonSerializer.Deserialize
                     if (id == currentChatId)
                     {
                         if (chatId == myContactId)
