@@ -139,10 +139,10 @@ namespace SoftPhone
             }
         }
 
-        async public void SendMessage(string newMessage)
+        async public void SendMessage (string newMessage)
         {
             
-            AddMessage(newMessage);
+            AddMessage(newMessage, true);
 
             String uriPath = "https://messengerserv.herokuapp.com/contacts/messages/add/?contactid=" + myContactId + "&othercontactid=" + currentChatId + "&message=" + newMessage;
             var webRequest = HttpWebRequest.Create(uriPath);
@@ -236,7 +236,7 @@ namespace SoftPhone
             
         }*/
 
-        public void AddMessage (string newMessage)
+        public void AddMessage (string newMessage, bool isMyMessage)
         {
             this.Dispatcher.Invoke(() =>
             {
@@ -253,6 +253,19 @@ namespace SoftPhone
                 messages.Children.Add(newChatMessage);
                 preparedMessage.Text = "";
                 chat.ScrollToEnd();
+                if (isMyMessage)
+                {
+                    newChatMessage.Background = System.Windows.Media.Brushes.Blue;
+                    newChatMessageLabel.Foreground = System.Windows.Media.Brushes.White;
+                    newChatMessage.HorizontalAlignment = HorizontalAlignment.Right;
+                }
+                else
+                {
+                    newChatMessage.Background = System.Windows.Media.Brushes.White;
+                    newChatMessageLabel.Foreground = System.Windows.Media.Brushes.Black;
+                    newChatMessage.HorizontalAlignment = HorizontalAlignment.Left;
+                }
+
             });
         }
 
@@ -279,7 +292,7 @@ namespace SoftPhone
                     {
                         if (chatId == myContactId)
                         {
-                            AddMessage(message);
+                            AddMessage(message, false);
                         }
                     }
                 });
